@@ -1,0 +1,63 @@
+{
+    "teams": [
+        {
+            "id": 1,
+            "moniker": "Green Wyverns"
+        },
+        {
+            "id": 2,
+            "moniker": "Killer Wenches"
+        },
+        {
+            "id": 1,
+            "moniker": "Black Knights"
+        }
+    ],
+    "players": [
+        {
+            "id": 1,
+            "firstName": "Albion",
+            "lastName": "Bruchard",
+            "teamId": 1
+        },
+        {
+            "id": 2,
+            "firstName": "Jean",
+            "lastName": "Lefebvre",
+            "teamId": 1
+        },
+        {
+            "id": 3,
+            "firstName": "Michel",
+            "lastName": "Braille",
+            "teamId": 1
+        },
+        {
+            "id": 4,
+            "firstName": "Aline",
+            "lastName": "Moreau",
+            "teamId": 2
+        },
+        {
+            "id": 5,
+            "firstName": "Manon",
+            "lastName": "Fontaine",
+            "teamId": 2
+        },
+        {
+            "id": 6,
+            "firstName": "Ophélie",
+            "lastName": "Roussel",
+            "teamId": 2
+        }
+    ],
+    "teamScore": [
+        {
+            "id": 1,
+            "teamId": 1,
+            "score": 5,
+            "timeStamp": 1580391255824
+        }
+
+    ]
+}

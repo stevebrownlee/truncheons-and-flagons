@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+
+.area {
+    padding: 2rem;
+    border: 1px dotted darkslategray;
+}
+
+.data {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+}
+
+.teamForm {
+    flex: 2;
+    min-height: 5em;
+}
+
+.playerForm {
+    flex: 2;
+    min-height: 5em;
+}
+
+.gameScores {
+    flex: 1;
+    min-height: 5em;
+}
+
+.leaderboard {
+    flex: 1;
+    min-height: 5em;
+}
+
+.gamePlay {
+    flex: 3
+}
+
