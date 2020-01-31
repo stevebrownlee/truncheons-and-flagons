@@ -22,13 +22,13 @@ export const getScores = () => {
         .then(changeScoreState)
 }
 
-export const addScore = score => {
+export const addScore = teamScore => {
     return fetch("http://localhost:8088/teamscores", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify(score)
+        body: JSON.stringify(teamScore)
     })
         .then(_ => _.json())
         .then(getScores)

@@ -11,7 +11,7 @@ applicationEventHub.addEventListener("teamStateChanged", event => {
 
 applicationEventHub.addEventListener("scoreStateChanged", event => {
     const teams = useTeams()
-    render(event.detail.scores, teams)
+    render(teams, event.detail.scores)
 })
 
 const render = (teamArray, scoreArray) => {

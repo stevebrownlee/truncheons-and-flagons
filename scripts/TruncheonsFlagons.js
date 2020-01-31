@@ -4,6 +4,7 @@ import { Leaderboard } from "./scoretrackers/leaderboard/Leaderboard.js"
 import { GamePlayersForm } from "./game/GamePlayersForm.js"
 import { StartRound } from "./game/StartRound.js"
 import { ScoreForm } from "./game/ScoreForm.js"
+import { addScore } from "./scoretrackers/ScoreProvider.js"
 
 
 const applicationEventHub = document.querySelector(".container")
@@ -11,9 +12,12 @@ const applicationEventHub = document.querySelector(".container")
 let currentRound = -1
 
 let activeTeams = new Map()
-activeTeams.set("first", {id: 0, score: 0})
-activeTeams.set("second", {id: 0, score: 0})
-activeTeams.set("third", {id: 0, score: 0})
+
+const initializeTeams = () => {
+    activeTeams.set("first", {teamId: 0, score: 0})
+    activeTeams.set("second", {teamId: 0, score: 0})
+    activeTeams.set("third", {teamId: 0, score: 0})
+}
 
 applicationEventHub.addEventListener("gameStarted", e => {
     currentRound = 0
@@ -37,15 +41,15 @@ applicationEventHub.addEventListener("teamSelectedForGame", e => {
     const cardinality = e.detail.cardinality
 
     const team = activeTeams.get(cardinality)
-    team.id = parseInt(teamId, 10)
+    team.teamId = parseInt(teamId, 10)
 
-    const f = activeTeams.get("first").id
-    const s = activeTeams.get("second").id
-    const t = activeTeams.get("third").id
+    const f = activeTeams.get("first").teamId
+    const s = activeTeams.get("second").teamId
+    const t = activeTeams.get("third").teamId
 
     if (
-        (f == s || f == t || s == t)
-        || (f === 0 || s === 0 || t === 0)
+        (f == s || f == t || s == t) ||
+        (f === 0 || s === 0 || t === 0)
     ) {
         currentRound = 0
     } else {
@@ -55,7 +59,12 @@ applicationEventHub.addEventListener("teamSelectedForGame", e => {
 })
 
 const saveScores = () => {
-    for
+    const timestamp = Date.now()
+
+    for (const [key, teamScore] of activeTeams) {
+        teamScore.timestamp = timestamp
+        addScore(teamScore)
+    }
 }
 
 const render = () => {
@@ -69,20 +78,22 @@ const render = () => {
         case 1:
         case 2:
         case 3:
-            const first = activeTeams.get("first").id
-            const second = activeTeams.get("second").id
-            const third = activeTeams.get("third").id
-
+            const first = activeTeams.get("first").teamId
+            const second = activeTeams.get("second").teamId
+            const third = activeTeams.get("third").teamId
             ScoreForm({ first, second, third, currentRound })
             break;
         case 4:
             currentRound = 0
-            saveScores().then( StartRound )
+            saveScores()
+            initializeTeams()
+            StartRound()
             break;
     }
 }
 
 export const TruncheonsFlagons = () => {
+    initializeTeams()
     PlayerForm()
     TeamForm()
     Leaderboard()
