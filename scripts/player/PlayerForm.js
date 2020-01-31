@@ -1,28 +1,28 @@
 import { addPlayer } from "./PlayerProvider.js"
 import { useTeams } from "../team/TeamProvider.js"
 
-const eventHub = document.querySelector(".container")
-const contentTarget = document.querySelector(".playerForm")
+const applicationEventHub = document.querySelector(".container")
+const componentContainer = document.querySelector(".playerForm")
 
-eventHub.addEventListener("teamStateChanged", event => {
+applicationEventHub.addEventListener("teamStateChanged", event => {
     render(event.detail.teams)
 })
 
-contentTarget.addEventListener("click", clickEvent => {
+componentContainer.addEventListener("click", clickEvent => {
     if (clickEvent.target.id === "addPlayer") {
-        const chosenTeam = contentTarget.querySelector("select[name='team']").value
+        const chosenTeam = componentContainer.querySelector("select[name='team']").value
         if (chosenTeam > 0) {
             addPlayer({
-                firstName: contentTarget.querySelector("input[name='firstName']").value,
-                lastName: contentTarget.querySelector("input[name='lastName']").value,
-                teamId: parseInt(contentTarget.querySelector("select[name='team']").value)
+                firstName: componentContainer.querySelector("input[name='firstName']").value,
+                lastName: componentContainer.querySelector("input[name='lastName']").value,
+                teamId: parseInt(componentContainer.querySelector("select[name='team']").value)
             })
         }
     }
 })
 
 const render = teamArray => {
-    contentTarget.innerHTML = `
+    componentContainer.innerHTML = `
         <fieldset>
             <input name="firstName" type="text" placeholder="First name" />
         </fieldset>

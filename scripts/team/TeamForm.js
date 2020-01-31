@@ -1,10 +1,10 @@
 import { addTeam } from "./TeamProvider.js"
 
-const eventHub = document.querySelector(".container")
-const contentTarget = document.querySelector(".teamForm")
+const applicationEventHub = document.querySelector(".container")
+const componentContainer = document.querySelector(".teamForm")
 
-contentTarget.addEventListener("click", clickEvent => {
-    const moniker = contentTarget.querySelector("input[name='moniker']")
+componentContainer.addEventListener("click", clickEvent => {
+    const moniker = componentContainer.querySelector("input[name='moniker']")
 
     if (clickEvent.target.id === "addTeam") {
         addTeam({
@@ -18,7 +18,7 @@ contentTarget.addEventListener("click", clickEvent => {
 })
 
 const render = () => {
-    contentTarget.innerHTML = `
+    componentContainer.innerHTML = `
         <fieldset>
             <input name="moniker" autofocus type="text" placeholder="Team name" />
         </fieldset>

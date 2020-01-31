@@ -1,6 +1,6 @@
 import { StateChangeEvent } from "../utils.js"
 
-const eventHub = document.querySelector(".container")
+const applicationEventHub = document.querySelector(".container")
 
 let players = []
 
@@ -9,7 +9,7 @@ const setPlayers = newPlayers => {
         players = newPlayers
     }
 
-    eventHub.dispatchEvent(
+    applicationEventHub.dispatchEvent(
         new StateChangeEvent("players", players.slice())
     )
 }

@@ -1,16 +1,21 @@
 import { useScores } from "../ScoreProvider.js"
 import { useTeams } from "../../team/TeamProvider.js"
 
-const eventHub = document.querySelector(".container")
-const contentTarget = document.querySelector(".leaderboard")
+const applicationEventHub = document.querySelector(".container")
+const componentContainer = document.querySelector(".leaderboard")
 
-eventHub.addEventListener("teamStateChanged", event => {
+applicationEventHub.addEventListener("teamStateChanged", event => {
     const scores = useScores()
     render(event.detail.teams, scores)
 })
 
+applicationEventHub.addEventListener("scoreStateChanged", event => {
+    const teams = useTeams()
+    render(event.detail.scores, teams)
+})
+
 const render = (teamArray, scoreArray) => {
-    contentTarget.innerHTML = `
+    componentContainer.innerHTML = `
         ${
             teamArray.map(team => {
                 const teamCumulativeScore = scoreArray
