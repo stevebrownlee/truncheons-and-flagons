@@ -22,13 +22,14 @@ applicationEventHub.addEventListener("gameStarted", e => {
 
 applicationEventHub.addEventListener("roundCompleted", e => {
     const scores = e.detail.scores
-    debugger
-    for (const teamScore of Object.entries(scores)) {
-        const team = activeTeams.get(teamScore.key)
-        team.score += teamScore.value
+
+    for (const [team, score] of Object.entries(scores)) {
+        const currentTeam = activeTeams.get(team)
+        currentTeam.score += parseInt(score, 10)
     }
 
     currentRound++
+    render()
 })
 
 applicationEventHub.addEventListener("teamSelectedForGame", e => {
@@ -53,6 +54,10 @@ applicationEventHub.addEventListener("teamSelectedForGame", e => {
     }
 })
 
+const saveScores = () => {
+    for
+}
+
 const render = () => {
     switch (currentRound) {
         case -1:
@@ -72,6 +77,7 @@ const render = () => {
             break;
         case 4:
             currentRound = 0
+            saveScores().then( StartRound )
             break;
     }
 }

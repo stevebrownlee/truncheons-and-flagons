@@ -4,16 +4,22 @@ const applicationEventHub = document.querySelector(".container")
 const componentContainer = document.querySelector(".gamePlay")
 
 componentContainer.addEventListener("click", clickEvent => {
-    const moniker = componentContainer.querySelector("input[name='moniker']")
+    if (clickEvent.target.id === "saveRound") {
+        const first = componentContainer.querySelector("input[name='first']")
+        const second = componentContainer.querySelector("input[name='second']")
+        const third = componentContainer.querySelector("input[name='third']")
 
-    if (clickEvent.target.id === "addTeam") {
-        addTeam({
-            moniker: moniker.value
-        })
-            .then(() => {
-                moniker.value = ""
-                moniker.focus()
+        applicationEventHub.dispatchEvent(
+            new CustomEvent("roundCompleted", {
+                detail: {
+                    scores: {
+                        first: first.value,
+                        second: second.value,
+                        third: third.value
+                    }
+                }
             })
+        )
     }
 })
 
@@ -33,7 +39,7 @@ const render = ({ first, second, third, currentRound: round }) => {
             <label for="third">${teams.find(t => t.id === third).moniker}</label>
             <input name="third" type="text" />
         </fieldset>
-        <button id="addTeam">Save Round Scores</button>
+        <button class="btn btn--info" id="saveRound">Save Round Scores</button>
     `
 }
 

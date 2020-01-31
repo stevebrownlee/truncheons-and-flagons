@@ -1,0 +1,13 @@
+
+.btn--startGame {
+    background-color: rgb(88, 177, 218);
+    padding: 2em;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -3em;
+    margin-top: -8em;
+    text-align: center;
+    line-height: 2.3em;
+    border: 0.25em dashed darkcyan;
+}

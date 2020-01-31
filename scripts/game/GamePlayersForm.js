@@ -4,13 +4,13 @@ const applicationEventHub = document.querySelector(".container")
 const componentContainer = document.querySelector(".gamePlay")
 
 componentContainer.addEventListener("change", e => {
-    const elementName = e.target.name
+    const elementId = e.target.id
 
-    if (elementName === "first" || elementName === "second" || elementName === "third") {
+    if (elementId === "firstTeamSelect" || elementId === "secondTeamSelect" || elementId === "thirdTeamSelect") {
         applicationEventHub.dispatchEvent(
             new CustomEvent("teamSelectedForGame", {
                 detail: {
-                    cardinality: elementName,
+                    cardinality: e.target.name,
                     teamId: e.target.value
                 }
             })
@@ -22,19 +22,19 @@ const render = () => {
     const teams = useTeams()
 
     componentContainer.innerHTML = `
-        <select name="first">
+        <select id="firstTeamSelect" name="first">
             <option value="0">Select first team...</option>
             ${
                 teams.map(t => `<option value="${t.id}">${t.moniker}</option>`).join("")
             }
         </select>
-        <select name="second">
+        <select id="secondTeamSelect" name="second">
             <option value="0">Select second team...</option>
             ${
                 teams.map(t => `<option value="${t.id}">${t.moniker}</option>`).join("")
             }
         </select>
-        <select name="third">
+        <select id="thirdTeamSelect" name="third">
             <option value="0">Select third team...</option>
             ${
                 teams.map(t => `<option value="${t.id}">${t.moniker}</option>`).join("")
