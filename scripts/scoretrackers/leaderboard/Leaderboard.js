@@ -1,5 +1,6 @@
 import { useScores } from "../ScoreProvider.js"
 import { useTeams } from "../../team/TeamProvider.js"
+import { usePlayers } from "../../player/PlayerProvider.js"
 
 const applicationEventHub = document.querySelector(".container")
 const componentContainer = document.querySelector(".leaderboard")
@@ -14,16 +15,29 @@ applicationEventHub.addEventListener("scoreStateChanged", event => {
     render(teams, event.detail.scores)
 })
 
-const render = (teamArray, scoreArray) => {
+applicationEventHub.addEventListener("playerStateChanged", event => {
+    const scores = useScores()
+    const teams = useTeams()
+    render(teams, scores)
+})
+
+const render = (teamArray, teamScoreArray) => {
+    const players = usePlayers()
+
     componentContainer.innerHTML = `
         <h3>Leaderboard</h3>
         ${
             teamArray.map(team => {
-                const teamCumulativeScore = scoreArray
-                    .filter(s => s.teamId === team.id)
+                const teamCumulativeScore = teamScoreArray
+                    .filter(ts => ts.teamId === team.id)
+                    .map(ts => {
+                        const teamPlayers = players.filter(p => p.teamId === ts.teamId).length
+                        team.players = teamPlayers
+                        return ts
+                    })
                     .reduce((c, n) => c + n.score, 0)
 
-                return `<div>${team.moniker}: ${teamCumulativeScore}</div>`
+                return `<div>${team.moniker} (${team.players}): ${teamCumulativeScore}</div>`
             }).join("")
         }
     `

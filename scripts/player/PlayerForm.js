@@ -10,13 +10,20 @@ applicationEventHub.addEventListener("teamStateChanged", event => {
 
 componentContainer.addEventListener("click", clickEvent => {
     if (clickEvent.target.id === "addPlayer") {
-        const chosenTeam = componentContainer.querySelector("select[name='team']").value
-        if (chosenTeam > 0) {
+        const chosenTeam = componentContainer.querySelector("select[name='team']")
+        const firstName = componentContainer.querySelector("input[name='firstName']")
+        const lastName = componentContainer.querySelector("input[name='lastName']")
+        if (chosenTeam.value > 0) {
             addPlayer({
-                firstName: componentContainer.querySelector("input[name='firstName']").value,
-                lastName: componentContainer.querySelector("input[name='lastName']").value,
-                teamId: parseInt(componentContainer.querySelector("select[name='team']").value)
+                firstName: firstName.value,
+                lastName: lastName.value,
+                teamId: parseInt(chosenTeam.value, 10)
             })
+                .then(() => {
+                    firstName.value = ""
+                    lastName.value = ""
+                    chosenTeam.value = 0
+                })
         }
     }
 })

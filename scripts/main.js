@@ -5,6 +5,6 @@ import { TruncheonsFlagons } from "./TruncheonsFlagons.js"
 
 
 getTeams()
-    .then(getScores)
     .then(getPlayers)
+    .then(getScores)
     .then(TruncheonsFlagons)
