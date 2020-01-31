@@ -22,11 +22,13 @@ applicationEventHub.addEventListener("gameStarted", e => {
 
 applicationEventHub.addEventListener("roundCompleted", e => {
     const scores = e.detail.scores
-
+    debugger
     for (const teamScore of Object.entries(scores)) {
         const team = activeTeams.get(teamScore.key)
         team.score += teamScore.value
     }
+
+    currentRound++
 })
 
 applicationEventHub.addEventListener("teamSelectedForGame", e => {
@@ -62,7 +64,11 @@ const render = () => {
         case 1:
         case 2:
         case 3:
-            ScoreForm(activeTeams)
+            const first = activeTeams.get("first").id
+            const second = activeTeams.get("second").id
+            const third = activeTeams.get("third").id
+
+            ScoreForm({ first, second, third, currentRound })
             break;
         case 4:
             currentRound = 0

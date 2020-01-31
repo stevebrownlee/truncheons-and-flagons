@@ -19,6 +19,7 @@ componentContainer.addEventListener("click", clickEvent => {
 
 const render = () => {
     componentContainer.innerHTML = `
+        <h3>New Team</h3>
         <fieldset>
             <input name="moniker" autofocus type="text" placeholder="Team name" />
         </fieldset>

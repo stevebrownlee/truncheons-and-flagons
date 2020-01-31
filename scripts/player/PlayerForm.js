@@ -23,6 +23,7 @@ componentContainer.addEventListener("click", clickEvent => {
 
 const render = teamArray => {
     componentContainer.innerHTML = `
+        <h3>New Player</h3>
         <fieldset>
             <input name="firstName" type="text" placeholder="First name" />
         </fieldset>
