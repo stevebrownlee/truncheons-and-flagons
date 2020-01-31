@@ -27,7 +27,8 @@ textarea {
 	color: #404040;
 	font-family: 'Comfortaa', Arial, sans-serif;
 	font-size: 1.10rem;
-	line-height: 1.5;
+    line-height: 1.5;
+    overflow: hidden;
 }
 
 fieldset {
@@ -71,8 +72,20 @@ h1,h2,h3,h4,h5,h6 {
     height: 100%;
 }
 
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 1rem;
+    border: 1px solid rgba(31, 79, 109, 0.5);
+    background-color: rgba(44, 155, 225, 0.5);
+    -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+}
+
 .area {
-    padding: 2rem;
+    padding: 0.3rem 2rem;
     border: 1px dotted darkslategray;
 }
 
@@ -88,22 +101,23 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .teamForm {
-    flex: 1;
+    flex: 1.5;
     min-height: 5em;
 }
 
 .playerForm {
-    flex: 2;
+    flex: 2.2;
     min-height: 5em;
 }
 
 .gameScores {
-    flex: 1;
+    flex: 1.3;
     min-height: 5em;
 }
 
 .leaderboard {
-    flex: 1;
+    flex: 3;
+    overflow-y: scroll;
     min-height: 5em;
 }
 

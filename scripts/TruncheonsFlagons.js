@@ -5,18 +5,17 @@ import { GamePlayersForm } from "./game/GamePlayersForm.js"
 import { StartRound } from "./game/StartRound.js"
 import { ScoreForm } from "./game/ScoreForm.js"
 import { addScore } from "./scoretrackers/ScoreProvider.js"
+import { GameScore } from "./scoretrackers/game/GameScores.js"
 
 
 const applicationEventHub = document.querySelector(".container")
-
 let currentRound = -1
-
 let activeTeams = new Map()
 
 const initializeTeams = () => {
-    activeTeams.set("first", {teamId: 0, score: 0})
-    activeTeams.set("second", {teamId: 0, score: 0})
-    activeTeams.set("third", {teamId: 0, score: 0})
+    activeTeams.set("first", { teamId: 0, score: 0 })
+    activeTeams.set("second", { teamId: 0, score: 0 })
+    activeTeams.set("third", { teamId: 0, score: 0 })
 }
 
 applicationEventHub.addEventListener("gameStarted", e => {
@@ -33,6 +32,7 @@ applicationEventHub.addEventListener("roundCompleted", e => {
     }
 
     currentRound++
+    GameScore(activeTeams)
     render()
 })
 
@@ -56,6 +56,7 @@ applicationEventHub.addEventListener("teamSelectedForGame", e => {
         currentRound = 1
         render()
     }
+    GameScore(activeTeams)
 })
 
 const saveScores = () => {

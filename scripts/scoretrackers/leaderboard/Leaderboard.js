@@ -16,6 +16,7 @@ applicationEventHub.addEventListener("scoreStateChanged", event => {
 
 const render = (teamArray, scoreArray) => {
     componentContainer.innerHTML = `
+        <h3>Leaderboard</h3>
         ${
             teamArray.map(team => {
                 const teamCumulativeScore = scoreArray
