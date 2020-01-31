@@ -1,7 +1,5 @@
-import { addTeam } from "./TeamProvider.js"
-
 const applicationEventHub = document.querySelector(".container")
-const componentContainer = document.querySelector(".teamForm")
+const componentContainer = document.querySelector(".gamePlay")
 
 componentContainer.addEventListener("click", clickEvent => {
     const moniker = componentContainer.querySelector("input[name='moniker']")
@@ -20,12 +18,18 @@ componentContainer.addEventListener("click", clickEvent => {
 const render = () => {
     componentContainer.innerHTML = `
         <fieldset>
-            <input name="moniker" autofocus type="text" placeholder="Team name" />
+            <input name="first" autofocus type="text" />
         </fieldset>
-        <button class="btn btn--success btn--small" id="addTeam">Create Team</button>
+        <fieldset>
+            <input name="second" type="text" />
+        </fieldset>
+        <fieldset>
+            <input name="third" type="text" />
+        </fieldset>
+        <button id="addTeam">Create Team</button>
     `
 }
 
-export const TeamForm = () => {
+export const ScoreForm = () => {
     render()
 }

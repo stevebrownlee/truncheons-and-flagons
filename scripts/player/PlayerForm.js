@@ -38,7 +38,7 @@ const render = teamArray => {
             </select>
         </fieldset>
 
-        <button id="addPlayer">Add Player to Team</button>
+        <button class="btn btn--success btn--small" id="addPlayer">Add Player to Team</button>
     `
 }
 
