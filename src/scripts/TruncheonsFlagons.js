@@ -50,7 +50,7 @@ applicationEventHub.addEventListener("teamSelectedForGame", e => {
     const t = activeTeams.get("third").teamId
 
     if (
-        (f == s || f == t || s == t) ||
+        (f === s || f === t || s === t) ||
         (f === 0 || s === 0 || t === 0)
     ) {
         currentRound = 0
@@ -95,7 +95,15 @@ const render = () => {
             ScoreForm({ first, second, third, currentRound })
             break;
         case 4:
-            currentRound = 0
+            /*
+                Game is over.
+                    1. Reset game play
+                    2. Display winner of current game
+                    3. Post results to API
+                    4. Empty out score Map()
+                    5. Display start game button
+            */
+            currentRound = -1
             calculateWinner()
             saveScores()
             initializeTeams()

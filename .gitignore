@@ -9,3 +9,4 @@ obj
 .vscode
 dist
 database.json
+.cache
