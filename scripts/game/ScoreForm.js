@@ -45,4 +45,5 @@ const render = ({ first, second, third, currentRound: round }) => {
 
 export const ScoreForm = ({ ...props }) => {
     render({ ...props })
+    componentContainer.querySelector("input[name='first']").focus()
 }

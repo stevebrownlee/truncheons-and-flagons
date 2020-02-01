@@ -1,0 +1,25 @@
+.team {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.team__header {
+}
+
+.team__column {
+    flex: 1;
+}
+
+.team__columnHeader {
+    flex: 1;
+    text-decoration: underline;
+}
+
+.team__name {
+    flex: 5;
+}
+
+.team__playerCount {
+    flex: 2;
+}

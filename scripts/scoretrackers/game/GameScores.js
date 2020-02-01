@@ -17,19 +17,27 @@ applicationEventHub.addEventListener("roundCompleted", e => {
 const render = (activeTeams, teams) => {
     componentContainer.innerHTML = `
         <h3>Current Game</h3>
-        ${
-            [...activeTeams].map(([key, teamScore]) => {
-                const team = teams.find(t => t.id === teamScore.teamId) || null
+        <div className="teams">
+            <div class="team team__header">
+                <div class="team__columnHeader team__name">Name</div>
+                <div class="team__columnHeader team__score">Score</div>
+            </div>
 
-                if (team !== null) {
-                    return `
-                        <div>
-                            ${team.moniker}: ${teamScore.score}
-                        </div>
-                    `
-                }
-            }).join("")
-        }
+            ${
+                [...activeTeams].map(([key, teamScore]) => {
+                    const team = teams.find(t => t.id === teamScore.teamId) || null
+
+                    if (team !== null) {
+                        return `
+                                <div class="team">
+                                    <div class="team__column team__name">${team.moniker}</div>
+                                    <div class="team__column team__score">${teamScore.score}</div>
+                                </div>
+                            `
+                    }
+                }).join("")
+            }
+        </div>
     `
 
 
