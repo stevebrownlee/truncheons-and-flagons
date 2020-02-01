@@ -34,7 +34,7 @@ module.exports = {
     },
     plugins: [
         new WebpackShellPlugin({
-            onBuildEnd: ["json-server -p 8084 -w api/database.json"]
+            onBuildEnd: ["json-server -p 8085 -w api/database.json"]
         }),
         new HtmlWebPackPlugin({
             template: "./src/index.html",
