@@ -17,13 +17,13 @@ const changeScoreState = newScores => {
 export const useScores = () => scores.slice()
 
 export const getScores = () => {
-    return fetch("http://localhost:8088/teamscores")
+    return fetch("http://localhost:8084/teamscores")
         .then(_ => _.json())
         .then(changeScoreState)
 }
 
 export const addScore = teamScore => {
-    return fetch("http://localhost:8088/teamscores", {
+    return fetch("http://localhost:8084/teamscores", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
