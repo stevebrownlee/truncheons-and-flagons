@@ -17,13 +17,13 @@ const changeApplicationTeamState = newTeams => {
 export const useTeams = () => teams.slice()
 
 export const getTeams = () => {
-    return fetch("http://localhost:8085/teams")
+    return fetch("http://flagons.nss.team/teams")
         .then(response => response.json())
         .then(changeApplicationTeamState)
 }
 
 export const addTeam = team => {
-    return fetch("http://localhost:8085/teams", {
+    return fetch("http://flagons.nss.team/teams", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

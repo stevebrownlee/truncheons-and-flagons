@@ -17,13 +17,13 @@ const setPlayers = newPlayers => {
 export const usePlayers = () => players.slice()
 
 export const getPlayers = () => {
-    return fetch("http://localhost:8085/players")
+    return fetch("http://flagons.nss.team/players")
         .then(response => response.json())
         .then(setPlayers)
 }
 
 export const addPlayer = player => {
-    return fetch("http://localhost:8085/players", {
+    return fetch("http://flagons.nss.team/players", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
