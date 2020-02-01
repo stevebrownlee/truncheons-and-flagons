@@ -62,6 +62,23 @@ h1,h2,h3,h4,h5,h6 {
   letter-spacing: 2px;
 }
 
+dialog {
+    z-index: 12;
+    width: 50%;
+    min-height: 20%;
+}
+
+.message {
+    text-align: center;
+    margin: 3rem 0 1rem 0;
+}
+
+.button--close {
+    position: absolute;
+    top: 0.5em;
+    right: 0.5em;
+}
+
 .container {
     display: flex;
     flex-direction: row;

@@ -1,4 +1,5 @@
 import { useTeams } from "../team/TeamProvider.js"
+import { alert } from "../utils.js"
 
 const applicationEventHub = document.querySelector(".container")
 const componentContainer = document.querySelector(".gamePlay")
@@ -8,23 +9,30 @@ componentContainer.addEventListener("click", clickEvent => {
         const first = componentContainer.querySelector("input[name='first']")
         const second = componentContainer.querySelector("input[name='second']")
         const third = componentContainer.querySelector("input[name='third']")
+        const totalEnteredPoints = parseInt(first.value) + parseInt(second.value) + parseInt(third.value)
 
-        applicationEventHub.dispatchEvent(
-            new CustomEvent("roundCompleted", {
-                detail: {
-                    scores: {
-                        first: first.value,
-                        second: second.value,
-                        third: third.value
+        if (totalEnteredPoints === 3) {
+            applicationEventHub.dispatchEvent(
+                new CustomEvent("roundCompleted", {
+                    detail: {
+                        scores: {
+                            first: first.value,
+                            second: second.value,
+                            third: third.value
+                        }
                     }
-                }
-            })
-        )
+                })
+            )
+        } else {
+            alert(`You must record 3 total points for each round.
+            You provided ${totalEnteredPoints || 0}.`)
+        }
     }
 })
 
-const render = ({ first, second, third, currentRound: round }) => {
+export const ScoreForm = ({ first, second, third, currentRound: round }) => {
     const teams = useTeams()
+
     componentContainer.innerHTML = `
         <h1>Round ${round}</h1>
         <fieldset>
@@ -41,9 +49,5 @@ const render = ({ first, second, third, currentRound: round }) => {
         </fieldset>
         <button class="btn btn--info" id="saveRound">Save Round Scores</button>
     `
-}
-
-export const ScoreForm = ({ ...props }) => {
-    render({ ...props })
     componentContainer.querySelector("input[name='first']").focus()
 }

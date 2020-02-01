@@ -6,6 +6,8 @@ import { StartRound } from "./game/StartRound.js"
 import { ScoreForm } from "./game/ScoreForm.js"
 import { addScore } from "./scoretrackers/ScoreProvider.js"
 import { GameScore } from "./scoretrackers/game/GameScores.js"
+import { useTeams } from "./team/TeamProvider.js"
+import { alert } from "./utils.js"
 
 
 const applicationEventHub = document.querySelector(".container")
@@ -59,6 +61,14 @@ applicationEventHub.addEventListener("teamSelectedForGame", e => {
     GameScore(activeTeams)
 })
 
+const calculateWinner = () => {
+    const teams = useTeams();
+
+    const winnerId = [...activeTeams.values()].sort((c,n) => n.score - c.score)[0].teamId
+    const winner = teams.find(t => t.id === winnerId).moniker
+    alert(`The winner is ${winner}`)
+}
+
 const saveScores = () => {
     const timestamp = Date.now()
 
@@ -86,6 +96,7 @@ const render = () => {
             break;
         case 4:
             currentRound = 0
+            calculateWinner()
             saveScores()
             initializeTeams()
             StartRound()

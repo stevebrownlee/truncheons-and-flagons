@@ -1,3 +1,14 @@
+const closeButton = document.querySelector(".button--close")
+const messageBox = document.querySelector(".messageBox")
+const message = document.querySelector(".message")
+
+closeButton.addEventListener("click", e => messageBox.close())
+
+export const alert = msg => {
+    message.textContent = msg
+    messageBox.showModal()
+}
+
 const singularize = str => {
     const isPlural = str.split("").reverse()[0] === "s"
     return isPlural ? str.substring(0, str.length-1) : str
