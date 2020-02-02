@@ -26,6 +26,11 @@
     text-align: center;
 }
 
+.inactive {
+    color: firebrick;
+    font-style: oblique;
+}
+
 .highlight {
     animation: highlightTeam 2s steps(10) forwards alternate;
 }

@@ -3,30 +3,32 @@ import { addTeam } from "./TeamProvider.js"
 const applicationEventHub = document.querySelector(".container")
 const componentContainer = document.querySelector(".teamForm")
 
-componentContainer.addEventListener("click", clickEvent => {
-    const moniker = componentContainer.querySelector("input[name='moniker']")
+componentContainer.addEventListener("submit", submitEvent => {
+    submitEvent.preventDefault()
 
-    if (clickEvent.target.id === "addTeam" && moniker.value !== "") {
-        addTeam({
-            moniker: moniker.value
-        })
-            .then(() => {
-                moniker.value = ""
-                moniker.focus()
+    if (submitEvent.target.id === "teamForm") {
+        const moniker = componentContainer.querySelector("input[name='moniker']")
+
+        if (moniker.value !== "") {
+            addTeam({
+                moniker: moniker.value
             })
+                .then(() => {
+                    moniker.value = ""
+                    moniker.focus()
+                })
+        }
     }
 })
 
-const render = () => {
+export const TeamForm = () => {
     componentContainer.innerHTML = `
         <h3>New Team</h3>
-        <fieldset>
-            <input name="moniker" autofocus type="text" placeholder="Team name" />
-        </fieldset>
-        <button class="btn btn--success btn--small" id="addTeam">Create Team</button>
+        <form id="teamForm">
+            <fieldset>
+                <input name="moniker" autofocus required type="text" placeholder="Team name" />
+            </fieldset>
+            <button class="btn btn--success btn--small" id="addTeam">Create Team</button>
+        </form>
     `
-}
-
-export const TeamForm = () => {
-    render()
 }

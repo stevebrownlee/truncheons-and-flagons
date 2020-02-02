@@ -53,7 +53,7 @@ const render = (teamArray, teamScoreArray) => {
             .sort((c, n) => n.cumulativeScore - c.cumulativeScore)
             .map(team => {
                 return `
-                <div class="team team--${team.id}">
+                <div class="team team--${team.id} ${team.players < 3 ? "inactive" : "active" }">
                     <div class="team__column team__name">${team.moniker}</div>
                     <div class="team__column team__playerCount">${team.players}</div>
                     <div class="team__column team__score">${team.cumulativeScore}</div>

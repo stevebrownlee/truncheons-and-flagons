@@ -1,5 +1,6 @@
 import { addPlayer } from "./PlayerProvider.js"
 import { useTeams } from "../team/TeamProvider.js"
+import { alert } from "../utils.js"
 
 const applicationEventHub = document.querySelector(".container")
 const componentContainer = document.querySelector(".playerForm")
@@ -8,13 +9,19 @@ applicationEventHub.addEventListener("teamStateChanged", event => {
     render(event.detail.teams)
 })
 
-componentContainer.addEventListener("click", clickEvent => {
-    if (clickEvent.target.id === "addPlayer") {
+componentContainer.addEventListener("submit", submitEvent => {
+    if (submitEvent.target.id === "playerForm") {
+        submitEvent.preventDefault()
+
         const chosenTeam = componentContainer.querySelector("select[name='team']")
         const firstName = componentContainer.querySelector("input[name='firstName']")
         const lastName = componentContainer.querySelector("input[name='lastName']")
 
-        if (chosenTeam.value > 0 && firstName.value !== "" && lastName.value !== "") {
+        if (chosenTeam.value === "0") {
+            alert("Please assign the player to a team")
+        }
+
+        if (chosenTeam.value !== "0" && firstName.value !== "" && lastName.value !== "") {
             addPlayer({
                 firstName: firstName.value,
                 lastName: lastName.value,
@@ -32,22 +39,24 @@ componentContainer.addEventListener("click", clickEvent => {
 const render = teamArray => {
     componentContainer.innerHTML = `
         <h3>New Player</h3>
-        <fieldset>
-            <input name="firstName" type="text" placeholder="First name" />
-        </fieldset>
-        <fieldset>
-            <input name="lastName" type="text" placeholder="Last name" />
-        </fieldset>
-        <fieldset>
-            <select name="team">
-                <option value="0">Please select a team...</option>
-                ${
-                    teamArray.map(team => `<option value="${team.id}">${team.moniker}</option>`)
-                }
-            </select>
-        </fieldset>
+        <form id="playerForm">
+            <fieldset>
+                <input name="firstName" type="text" required placeholder="First name" />
+            </fieldset>
+            <fieldset>
+                <input name="lastName" type="text" required placeholder="Last name" />
+            </fieldset>
+            <fieldset>
+                <select name="team" required>
+                    <option value="0">Please select a team...</option>
+                    ${
+                        teamArray.map(team => `<option value="${team.id}">${team.moniker}</option>`)
+                    }
+                </select>
+            </fieldset>
 
-        <button class="btn btn--success btn--small" id="addPlayer">Add Player to Team</button>
+            <button class="btn btn--success btn--small" id="addPlayer">Add Player to Team</button>
+        </form>
     `
 }
 
