@@ -38,7 +38,8 @@ module.exports = {
         }),
         new HtmlWebPackPlugin({
             template: "./src/index.html",
-            filename: "./index.html"
+            filename: "./index.html",
+            inject: false
         }),
         new CopyPlugin([{ from: "./src/styles", to: "./styles" }]),
         new JavaScriptObfuscator ({
@@ -46,7 +47,7 @@ module.exports = {
         }, [])
     ],
     output: {
-        filename: "bundle.js"
+        filename: "scripts/main.js"
     },
     devtool: false
 };
