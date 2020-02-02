@@ -1,4 +1,5 @@
 import { StateChangeEvent } from "../utils.js"
+import { settings } from "../Settings.js"
 
 const applicationEventHub = document.querySelector(".container")
 
@@ -17,13 +18,13 @@ const changeApplicationTeamState = newTeams => {
 export const useTeams = () => teams.slice()
 
 export const getTeams = () => {
-    return fetch("http://flagons.nss.team/teams")
+    return fetch(`${settings.apiUrl}/teams`)
         .then(response => response.json())
         .then(changeApplicationTeamState)
 }
 
 export const addTeam = team => {
-    return fetch("http://flagons.nss.team/teams", {
+    return fetch(`${settings.apiUrl}/teams`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

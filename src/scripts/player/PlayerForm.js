@@ -13,7 +13,8 @@ componentContainer.addEventListener("click", clickEvent => {
         const chosenTeam = componentContainer.querySelector("select[name='team']")
         const firstName = componentContainer.querySelector("input[name='firstName']")
         const lastName = componentContainer.querySelector("input[name='lastName']")
-        if (chosenTeam.value > 0) {
+
+        if (chosenTeam.value > 0 && firstName.value !== "" && lastName.value !== "") {
             addPlayer({
                 firstName: firstName.value,
                 lastName: lastName.value,

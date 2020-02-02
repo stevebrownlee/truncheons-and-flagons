@@ -6,7 +6,7 @@ const componentContainer = document.querySelector(".teamForm")
 componentContainer.addEventListener("click", clickEvent => {
     const moniker = componentContainer.querySelector("input[name='moniker']")
 
-    if (clickEvent.target.id === "addTeam") {
+    if (clickEvent.target.id === "addTeam" && moniker.value !== "") {
         addTeam({
             moniker: moniker.value
         })

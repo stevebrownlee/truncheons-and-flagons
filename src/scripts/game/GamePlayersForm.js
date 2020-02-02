@@ -22,24 +22,26 @@ const render = () => {
     const teams = useTeams()
 
     componentContainer.innerHTML = `
-        <select id="firstTeamSelect" name="first">
-            <option value="0">Select first team...</option>
-            ${
-                teams.map(t => `<option value="${t.id}">${t.moniker}</option>`).join("")
-            }
-        </select>
-        <select id="secondTeamSelect" name="second">
-            <option value="0">Select second team...</option>
-            ${
-                teams.map(t => `<option value="${t.id}">${t.moniker}</option>`).join("")
-            }
-        </select>
-        <select id="thirdTeamSelect" name="third">
-            <option value="0">Select third team...</option>
-            ${
-                teams.map(t => `<option value="${t.id}">${t.moniker}</option>`).join("")
-            }
-        </select>
+        <div class="entryForm">
+            <select class="entryForm__dropdown" id="firstTeamSelect" name="first">
+                <option value="0">Select first team...</option>
+                ${
+                    teams.map(t => `<option value="${t.id}">${t.moniker}</option>`).join("")
+                }
+            </select>
+            <select class="entryForm__dropdown" id="secondTeamSelect" name="second">
+                <option value="0">Select second team...</option>
+                ${
+                    teams.map(t => `<option value="${t.id}">${t.moniker}</option>`).join("")
+                }
+            </select>
+            <select class="entryForm__dropdown" id="thirdTeamSelect" name="third">
+                <option value="0">Select third team...</option>
+                ${
+                    teams.map(t => `<option value="${t.id}">${t.moniker}</option>`).join("")
+                }
+            </select>
+        </div>
     `
 }
 

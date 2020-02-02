@@ -1,4 +1,5 @@
 import { StateChangeEvent } from "../utils.js"
+import { settings } from "../Settings.js"
 
 const applicationEventHub = document.querySelector(".container")
 
@@ -17,13 +18,13 @@ const changeScoreState = newScores => {
 export const useScores = () => scores.slice()
 
 export const getScores = () => {
-    return fetch("http://flagons.nss.team/teamscores")
+    return fetch(`${settings.apiUrl}/teamscores`)
         .then(_ => _.json())
         .then(changeScoreState)
 }
 
 export const addScore = teamScore => {
-    return fetch("http://flagons.nss.team/teamscores", {
+    return fetch(`${settings.apiUrl}/teamscores`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

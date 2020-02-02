@@ -1,7 +1,7 @@
 @import './buttons.css';
-@import './gameplay.css';
 @import './teams.css';
-@import url('https://fonts.googleapis.com/css?family=Comfortaa|Patua+One');
+@import './gameplay.css';
+@import url('https://fonts.googleapis.com/css?family=Comfortaa|Patua+One|Uncial+Antiqua');
 
 /*Typography
 --------------------------------------------------------------*/
@@ -137,9 +137,4 @@ dialog {
     flex: 3;
     overflow-y: scroll;
     min-height: 5em;
-}
-
-.gamePlay {
-    position: relative;
-    flex: 7;
 }
