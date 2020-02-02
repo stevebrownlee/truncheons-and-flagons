@@ -25,3 +25,21 @@
 .team__score {
     text-align: center;
 }
+
+.highlight {
+    animation: highlightTeam 2s steps(10) forwards alternate;
+}
+
+@keyframes highlightTeam {
+    0% {
+        background-color: white;
+        border: none;
+    }
+    50% {
+        background-color: plum;
+    }
+    100% {
+        background-color: white;
+        border: none;
+    }
+}

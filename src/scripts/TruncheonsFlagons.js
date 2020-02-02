@@ -43,7 +43,7 @@ applicationEventHub.addEventListener("teamSelectedForGame", e => {
     const cardinality = e.detail.cardinality
 
     const team = activeTeams.get(cardinality)
-    team.teamId = parseInt(teamId, 10)
+    team.teamId = teamId
 
     const f = activeTeams.get("first").teamId
     const s = activeTeams.get("second").teamId

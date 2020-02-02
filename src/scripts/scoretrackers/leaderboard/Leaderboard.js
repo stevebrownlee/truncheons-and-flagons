@@ -5,6 +5,11 @@ import { usePlayers } from "../../player/PlayerProvider.js"
 const applicationEventHub = document.querySelector(".container")
 const componentContainer = document.querySelector(".leaderboard")
 
+applicationEventHub.addEventListener("teamSelectedForGame", event => {
+    const teamEl = document.querySelector(`.team--${event.detail.teamId}`)
+    teamEl.classList.add("highlight")
+})
+
 applicationEventHub.addEventListener("teamStateChanged", event => {
     const scores = useScores()
     render(event.detail.teams, scores)
@@ -48,7 +53,7 @@ const render = (teamArray, teamScoreArray) => {
             .sort((c, n) => n.cumulativeScore - c.cumulativeScore)
             .map(team => {
                 return `
-                <div class="team">
+                <div class="team team--${team.id}">
                     <div class="team__column team__name">${team.moniker}</div>
                     <div class="team__column team__playerCount">${team.players}</div>
                     <div class="team__column team__score">${team.cumulativeScore}</div>

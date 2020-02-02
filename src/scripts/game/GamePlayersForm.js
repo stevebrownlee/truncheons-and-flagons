@@ -11,7 +11,7 @@ componentContainer.addEventListener("change", e => {
             new CustomEvent("teamSelectedForGame", {
                 detail: {
                     cardinality: e.target.name,
-                    teamId: e.target.value
+                    teamId: parseInt(e.target.value, 10)
                 }
             })
         )
