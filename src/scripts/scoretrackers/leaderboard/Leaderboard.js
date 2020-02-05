@@ -40,13 +40,10 @@ const render = (teamArray, teamScoreArray) => {
 
         ${
         teamArray.map(team => {
+            team.players = players.filter(p => p.teamId === team.id).length
+
             team.cumulativeScore = teamScoreArray
                 .filter(ts => ts.teamId === team.id)
-                .map(ts => {
-                    const teamPlayers = players.filter(p => p.teamId === ts.teamId).length
-                    team.players = teamPlayers
-                    return ts
-                })
                 .reduce((c, n) => c + n.score, 0)
             return team
         })
@@ -55,8 +52,8 @@ const render = (teamArray, teamScoreArray) => {
                 return `
                 <div class="team team--${team.id} ${team.players < 3 ? "inactive" : "active" }">
                     <div class="team__column team__name">${team.moniker}</div>
-                    <div class="team__column team__playerCount">${team.players}</div>
-                    <div class="team__column team__score">${team.cumulativeScore}</div>
+                    <div class="team__column team__playerCount">${team.players || 0}</div>
+                    <div class="team__column team__score">${team.cumulativeScore || 0}</div>
                 </div>
             `
             })
