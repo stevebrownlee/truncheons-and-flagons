@@ -6,7 +6,9 @@ const componentContainer = document.querySelector(".gamePlay")
 componentContainer.addEventListener("change", e => {
     const elementId = e.target.id
 
-    if (elementId === "firstTeamSelect" || elementId === "secondTeamSelect" || elementId === "thirdTeamSelect") {
+    if (elementId === "firstTeamSelect"
+            || elementId === "secondTeamSelect"
+            || elementId === "thirdTeamSelect") {
         applicationEventHub.dispatchEvent(
             new CustomEvent("teamSelectedForGame", {
                 detail: {
