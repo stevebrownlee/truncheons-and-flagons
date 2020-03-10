@@ -14,6 +14,16 @@ const singularize = str => {
     return isPlural ? str.substring(0, str.length-1) : str
 }
 
+if (!("on" in EventTarget.prototype)) {
+    Object.defineProperty(EventTarget.prototype, "on", {
+        value: new Proxy(EventTarget.prototype.addEventListener, {
+            apply: function (_target, _this, _args) {
+                return _target.apply(_this, _args)
+            }
+        })
+    })
+}
+
 export const StateChangeEvent = new Proxy(CustomEvent, {
     construct(target, args) {
         const eventName = args[0]

@@ -18,10 +18,12 @@ const changeApplicationTeamState = newTeams => {
 export const useTeams = () => teams.slice()
 
 export const getTeams = () => {
-    return fetch(`${settings.apiUrl}/teams`)
-        .then(response => response.json())
-        .then(changeApplicationTeamState)
+    return fetch(`${settings.apiUrl}/teams?_embed=players`)
+    .then(response => response.json())
+    .then(changeApplicationTeamState)
 }
+
+applicationEventHub.addEventListener("playerStateChanged", getTeams)
 
 export const addTeam = team => {
     return fetch(`${settings.apiUrl}/teams`, {

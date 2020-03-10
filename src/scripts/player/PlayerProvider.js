@@ -23,6 +23,12 @@ export const getPlayers = () => {
         .then(setPlayers)
 }
 
+export const getPlayersByTeam = teamId => {
+    return fetch(`${settings.apiUrl}/players?teamId=${teamId}`)
+        .then(response => response.json())
+        .then(setPlayers)
+}
+
 export const addPlayer = player => {
     return fetch(`${settings.apiUrl}/players`, {
         method: "POST",

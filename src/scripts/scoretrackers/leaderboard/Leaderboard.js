@@ -27,8 +27,6 @@ applicationEventHub.addEventListener("playerStateChanged", event => {
 })
 
 const render = (teamArray, teamScoreArray) => {
-    const players = usePlayers()
-
     componentContainer.innerHTML = `
         <h3>Leaderboard</h3>
         <div className="teams">
@@ -39,23 +37,21 @@ const render = (teamArray, teamScoreArray) => {
             </div>
 
         ${
-        teamArray.map(team => {
-            team.players = players.filter(p => p.teamId === team.id).length
-
-            team.cumulativeScore = teamScoreArray
-                .filter(ts => ts.teamId === team.id)
-                .reduce((c, n) => c + n.score, 0)
-            return team
-        })
+            teamArray.map(team => {
+                team.cumulativeScore = teamScoreArray
+                    .filter(ts => ts.teamId === team.id)
+                    .reduce((c, n) => c + n.score, 0)
+                return team
+            })
             .sort((c, n) => n.cumulativeScore - c.cumulativeScore)
             .map(team => {
                 return `
-                <div class="team team--${team.id} ${team.players < 3 ? "inactive" : "active" }">
-                    <div class="team__column team__name">${team.moniker}</div>
-                    <div class="team__column team__playerCount">${team.players || 0}</div>
-                    <div class="team__column team__score">${team.cumulativeScore || 0}</div>
-                </div>
-            `
+                    <div class="team team--${team.id} ${team.players.length < 3 ? "inactive" : "active" }">
+                        <div class="team__column team__name">${team.moniker}</div>
+                        <div class="team__column team__playerCount">${team.players.length || 0}</div>
+                        <div class="team__column team__score">${team.cumulativeScore || 0}</div>
+                    </div>
+                `
             })
             .join("")
         }

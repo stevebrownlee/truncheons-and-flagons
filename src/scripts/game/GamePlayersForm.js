@@ -1,4 +1,5 @@
 import { useTeams } from "../team/TeamProvider.js"
+import { usePlayers } from "../player/PlayerProvider.js"
 
 const applicationEventHub = document.querySelector(".container")
 const componentContainer = document.querySelector(".gamePlay")
@@ -21,7 +22,8 @@ componentContainer.addEventListener("change", e => {
 })
 
 const render = () => {
-    const teams = useTeams()
+    let teams = useTeams()
+    teams = teams.filter(team => team.players.length === 3)
 
     componentContainer.innerHTML = `
         <div class="entryForm">
