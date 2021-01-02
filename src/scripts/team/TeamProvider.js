@@ -6,7 +6,7 @@ let teams = []
 export const useTeams = () => [...teams]
 
 export const getTeams = () => {
-    return fetch(`${settings.apiUrl}/teams?_embed=players`)
+    return fetch(`${settings.apiUrl}/teams?_embed=players&_embed=teamScores`)
     .then(response => response.json())
     .then(changeApplicationTeamState)
 }
