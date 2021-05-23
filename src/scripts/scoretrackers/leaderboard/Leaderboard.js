@@ -39,7 +39,7 @@ applicationEventHub.on("click", event => {
     }
 })
 
-const render = (teamArray, teamScoreArray) => {
+const render = (teamArray) => {
     componentContainer.innerHTML = `
         <h3 style="margin-block-end: 0.5rem; margin-block-start: 0;">Leaderboard</h3>
         <div class="teams">
@@ -51,7 +51,7 @@ const render = (teamArray, teamScoreArray) => {
             <div class="teams__list">
                 ${
                     teamArray.map(team => {
-                        team.cumulativeScore = team.scores
+                        team.cumulativeScore = team.teamScores
                             .reduce((c, n) => c + n.score, 0)
                         return team
                     })
