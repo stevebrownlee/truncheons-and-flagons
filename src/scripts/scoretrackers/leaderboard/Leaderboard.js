@@ -60,7 +60,7 @@ const render = (teamArray) => {
                         return `
                             <div class="team team--${team.id} ${team.players.length < 3 ? "inactive" : "active" }">
                                 <div class="team__column team__name">
-                                    <button class="fakeLink" id="team__button--${team.id}">${team.name}</button>
+                                    <button class="fakeLink" id="team__button--${team.id}">${team.moniker}</button>
                                 </div>
                                 <div class="team__column team__playerCount">${team.players.length || 0}</div>
                                 <div class="team__column team__score">${team.cumulativeScore || 0}</div>

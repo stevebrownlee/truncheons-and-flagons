@@ -49,7 +49,7 @@ const render = teamArray => {
                 <select name="team" required>
                     <option value="0">Please select a team...</option>
                     ${
-                        teamArray.map(team => `<option value="${team.id}">${team.name}</option>`)
+                        teamArray.map(team => `<option value="${team.id}">${team.moniker}</option>`)
                     }
                 </select>
             </fieldset>
